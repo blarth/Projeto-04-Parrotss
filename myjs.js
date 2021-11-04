@@ -18,13 +18,14 @@ function verificacao_intervalo(x, min, max) {
 console.log(numero_cartas);
 /* loop para verificar a resposta e pedir outra se necessaria */
 
-/* while (
-  verificacao_intervalo(numero_cartas, 4, 14) !== true  
+while (
+  verificacao_intervalo(numero_cartas, 4, 14) !== true &&
   verificacao_loop
 ) {
   numero_cartas = pegar_numero_cartas();
 }
-console.log(numero_cartas); */
+
+/* 
 
 if (verificacao_intervalo(numero_cartas, 4, 14) !== true) {
   numero_cartas = pegar_numero_cartas();
@@ -35,3 +36,4 @@ if (verificacao_intervalo(numero_cartas, 4, 14) !== true) {
     console.log("ta certu");
   }
 }
+ */
