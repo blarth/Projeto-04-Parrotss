@@ -1,0 +1,74 @@
+body {
+  font-family: "Righteous", cursive;
+  font-family: "Roboto", sans-serif;
+  background-color: #eef9bf;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header h1 {
+  font-family: Roboto;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 700;
+  text-align: left;
+  color: #75b79e;
+}
+
+.title {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.parrot-place {
+  width: 80%;
+  margin: auto 0;
+  height: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  margin-top: 25px;
+}
+
+.parrot-place > * {
+  flex: 0 1 120px;
+}
+.card {
+  height: 146px;
+  width: 117px;
+  border-radius: 5px;
+  background-color: #a7e9af;
+  border: 1px solid #99cea8;
+  margin-left: 35px;
+  margin-top: 35px;
+}
+
+.front-face {
+  width: 100px;
+  height: 100px;
+  margin: auto auto;
+}
+
+.front-face img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 414px) {
+  header h1 {
+    font-size: 36px;
+  }
+  .parrot-place {
+    justify-content: center;
+  }
+  .card {
+    margin: 15 auto;
+  }
+}
