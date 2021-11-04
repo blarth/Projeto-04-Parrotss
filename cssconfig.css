@@ -48,17 +48,51 @@ header h1 {
   border: 1px solid #99cea8;
   margin-left: 35px;
   margin-top: 35px;
+  backface-visibility: hidden;
+  transition: all 0.5s;
+  transform-style: preserve-3d;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.face {
+  width: 100%;
+  height: 100%;
+  background-color: #a7e9af;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  backface-visibility: hidden;
+  transition: all 0.7s ease-in;
 }
 
 .front-face {
   width: 100px;
   height: 100px;
-  margin: auto auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .front-face img {
   width: 100%;
   height: 100%;
+}
+.back-face img {
+  width: 100%;
+  height: 100%;
+}
+
+.back-face {
+  transform: rotateY(180deg);
+}
+
+.card:hover .back-face {
+  transform: rotateY(0deg);
+}
+
+.card:hover .front-face {
+  transform: rotateY(-180deg);
 }
 
 @media (max-width: 414px) {
