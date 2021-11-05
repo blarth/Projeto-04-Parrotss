@@ -48,9 +48,6 @@ header h1 {
   border: 1px solid #99cea8;
   margin-left: 35px;
   margin-top: 35px;
-  backface-visibility: hidden;
-  transition: all 0.5s;
-  transform-style: preserve-3d;
   position: relative;
   display: flex;
   justify-content: center;
@@ -83,17 +80,17 @@ header h1 {
   height: 100%;
 }
 
-.back-face {
+/* .back-face {
   transform: rotateY(180deg);
 }
-
-.card:hover .back-face {
+ */
+/* .card .back-face {
   transform: rotateY(0deg);
 }
-
-.card:hover .front-face {
+ */
+/* .card .front-face {
   transform: rotateY(-180deg);
-}
+} */
 
 @media (max-width: 414px) {
   header h1 {
