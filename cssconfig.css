@@ -38,7 +38,7 @@ header h1 {
 }
 
 .parrot-place > * {
-  flex: 0 1 120px;
+  flex: 0 1 146px;
 }
 .card {
   height: 146px;
@@ -53,33 +53,44 @@ header h1 {
   justify-content: center;
   align-items: center;
 }
+
 .face {
   width: 100%;
   height: 100%;
   background-color: #a7e9af;
+  border-radius: 10px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   backface-visibility: hidden;
+
+  transform-style: preserve-3d;
   transition: all 0.7s ease-in;
 }
 
-.front-face {
-  width: 100px;
-  height: 100px;
+.back-face {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.card:active .back-face {
+  transform: rotateY(-180deg);
+}
+
+.card:active .front-face {
+  transform: rotateY(0deg);
+}
 
 .front-face img {
-  width: 100%;
-  height: 100%;
+  max-width: 10px;
 }
-.back-face img {
-  width: 100%;
-  height: 100%;
+.escolhida {
+  background-color: red;
 }
-
 /* .back-face {
   transform: rotateY(180deg);
 }
