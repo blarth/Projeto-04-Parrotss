@@ -39,7 +39,7 @@ function comecarJogo() {
       <div class="back-face face" data-identifier="back-face" onclick="vira(this)">
         <img src="assets/front.png" alt="erro" />
       </div>
-      <div class="front-face face" onclick="jogando(this)" data-identifier="front-face">
+      <div class="front-face face"  data-identifier="front-face">
         <img src="assets/${nomeImg[i]}.gif" alt="erro" />
       </div>
     </div>`;
@@ -52,14 +52,6 @@ function comecarJogo() {
   for (let i = 0; i < arrayComCartas.length; i++) {
     cardsParaBaixo.innerHTML += arrayComCartas[i];
   }
-}
-
-function jogando(cartax) {
-  cartax.classList.add("escolhida");
-
-  todasAsCartas = document.querySelectorAll(".escolhida");
-  jogo();
-  terminarJogo();
 }
 
 function viraVolta() {
