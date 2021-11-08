@@ -1,11 +1,15 @@
-/* Comeco do jogo, checar parametros */
+/* Variaveis Globais */
 let cartas;
 let jogadas = 0;
 let todasAsCartas;
 let cartasJaViradas = [];
 let cartax;
 let todasAsCartasTras;
+const cardsParaBaixo = document.querySelector(".parrot-place");
+
+//Comeco do jogo//
 comecarJogo();
+
 function embaralhador() {
   return Math.random() - 0.5;
 }
@@ -88,18 +92,25 @@ function jogo() {
       todasAsCartas[1].classList.remove("escolhida");
       todasAsCartas[0].classList.add("escolhida-locked");
       todasAsCartas[1].classList.add("escolhida-locked");
+      jogadas++;
     } else {
       setTimeout(viraVolta, 1000);
+      jogadas++;
     }
   }
 }
 function alertaFinal() {
   alert(`Você ganhou em ${jogadas} jogadas!`);
+  /* let gameplay = prompt("Gostaria de jogar novamente?");
+  if (gameplay === "sim") {
+    cardsParaBaixo.innerHTML = "";
+    cartas = 0;
+    comecarJogo();
+  } else {
+  } */
 }
 
 function terminarJogo() {
-  jogadas++;
-
   if (cartasJaViradas.length === parseInt(cartas)) {
     setTimeout(alertaFinal, 1000);
   }
