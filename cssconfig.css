@@ -65,31 +65,33 @@ header h1 {
   justify-content: center;
   position: absolute;
   backface-visibility: hidden;
-
   transform-style: preserve-3d;
   transition: all 0.7s ease-in;
 }
+.front-face {
+  transform: rotateY(180deg);
+}
 
-.back-face {
+.back-face,
+.front-face {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.card:active .back-face {
+.back-face img,
+.front-face img {
+  max-width: 100px;
+}
+.vira-tras {
   transform: rotateY(-180deg);
 }
-
-.card:active .front-face {
+.escolhida {
   transform: rotateY(0deg);
 }
-
-.front-face img {
-  max-width: 10px;
-}
-.escolhida {
-  background-color: red;
+.escolhida-locked {
+  transform: rotateY(0deg);
 }
 /* .back-face {
   transform: rotateY(180deg);

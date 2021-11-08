@@ -1,17 +1,11 @@
 /* Comeco do jogo, checar parametros */
 let cartas;
 let jogadas = 0;
-let todasAsCartas = document.querySelectorAll(".escolhida");
-function terminarJogo() {
-  jogadas++;
-  todasAsCartas = document.querySelectorAll(".escolhida");
-  console.log(jogadas);
-
-  if (todasAsCartas.length === parseInt(cartas)) {
-    alert(`Você ganhou em ${jogadas} jogadas!`);
-  }
-}
-
+let todasAsCartas;
+let cartasJaViradas = [];
+let cartax;
+let todasAsCartasTras;
+comecarJogo();
 function embaralhador() {
   return Math.random() - 0.5;
 }
@@ -36,26 +30,17 @@ function comecarJogo() {
   const arrayComCartas = [];
 
   for (let i = 0; i < cartas / 2; i++) {
-    const cartaNova = `<div class="card">
-      <div class="front-face face" >
+    const cartaNova = `<div class="card" data-identifier="card">
+      
+      <div class="back-face face" data-identifier="back-face" onclick="vira(this)">
         <img src="assets/front.png" alt="erro" />
       </div>
-      <div class="back-face face" onclick="toggleEscolhida(this)">
+      <div class="front-face face" onclick="jogando(this)" data-identifier="front-face">
         <img src="assets/${nomeImg[i]}.gif" alt="erro" />
       </div>
     </div>`;
     arrayComCartas.push(cartaNova);
     arrayComCartas.push(cartaNova);
-
-    /* cardsParaBaixo.innerHTML += `
-    <div class="card">
-      <div class="front-face face" >
-        <img src="assets/front.png" alt="erro" />
-      </div>
-      <div class="face" onclick="add_backface(this)">
-        img src="assets/${nomeImg}
-      </div>
-    </div>`; */
   }
   const cardsParaBaixo = document.querySelector(".parrot-place");
 
@@ -64,30 +49,58 @@ function comecarJogo() {
     cardsParaBaixo.innerHTML += arrayComCartas[i];
   }
 }
-comecarJogo();
 
-function toggleEscolhida(cartax) {
-  cartax.classList.toggle("escolhida");
+function jogando(cartax) {
+  cartax.classList.add("escolhida");
+
+  todasAsCartas = document.querySelectorAll(".escolhida");
+  jogo();
   terminarJogo();
 }
 
-/* function verificarCardParaBaixo() {
-  
-  return cardVirado;
-} */
+function viraVolta() {
+  todasAsCartasTras = document.querySelectorAll(".vira-tras");
+  for (let i = 0; i < todasAsCartasTras.length; i++) {
+    todasAsCartasTras[i].classList.remove("vira-tras");
+  }
+  todasAsCartas[0].classList.remove("escolhida");
+  todasAsCartas[1].classList.remove("escolhida");
+}
+
+function vira(tras) {
+  tras.classList.add("vira-tras");
+  cartax = tras.nextElementSibling;
+  cartax.classList.add("escolhida");
+  todasAsCartas = document.querySelectorAll(".escolhida");
+
+  jogo();
+  terminarJogo();
+}
 
 function jogo() {
-  let cardVirado = document.querySelector(".escolhida");
+  if (todasAsCartas.length === 2) {
+    if (todasAsCartas[0].innerHTML === todasAsCartas[1].innerHTML) {
+      todasAsCartas[0].removeAttribute("onclick");
+      todasAsCartas[1].removeAttribute("onclick");
+      cartasJaViradas.push(todasAsCartas[0]);
+      cartasJaViradas.push(todasAsCartas[1]);
+      todasAsCartas[0].classList.remove("escolhida");
+      todasAsCartas[1].classList.remove("escolhida");
+      todasAsCartas[0].classList.add("escolhida-locked");
+      todasAsCartas[1].classList.add("escolhida-locked");
+    } else {
+      setTimeout(viraVolta, 1000);
+    }
+  }
+}
+function alertaFinal() {
+  alert(`Você ganhou em ${jogadas} jogadas!`);
 }
 
-jogo();
-/* loop para verificar a resposta e pedir outra se necessaria */
-/* 
-function add_backface(parrot) {
-  parrot.classList.toggle("back-face");
-  parrot.innerHTML = `<img src="assets/bobrossparrot.gif" alt="erro" />`;
-}
- */
-/* Se o papagaio for o primeiro a estar virado, ele fica parado esperando */
+function terminarJogo() {
+  jogadas++;
 
-/* Se o segundo papagaio que virar não for correspondente ao primeiro papagaio, o js espera 1 segundo e vira os dois de volta */
+  if (cartasJaViradas.length === parseInt(cartas)) {
+    setTimeout(alertaFinal, 1000);
+  }
+}
